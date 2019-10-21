@@ -1,4 +1,9 @@
 body{
 	background-color:#343a40;
 	color:#ababab;
+	text-align: center;
+}
+
+.solidpg, .pulsepg, .fadepg, .lightningpg, .neonpg{
+	display:none;
 }

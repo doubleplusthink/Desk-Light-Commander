@@ -1,1 +1,39 @@
-empty... for now
+function toggleActive(itemId, pg){
+  var buttons = document.getElementsByClassName('mode-select');
+  for (var i = 0; i < buttons.length; i++){
+    buttons[i].classList.remove('active')
+  }
+  var item = document.getElementById(itemId);
+  item.classList.toggle("active");
+  var pages = []
+  modes = document.getElementsByClassName("mode-select")
+  for (var i=0; i < modes.length; i++){
+  	pages.push(modes[i].id.toLowerCase() + "pg")
+  }
+  for (var i=0; i < pages.length; i++){
+    document.getElementsByClassName(pages[i])[0].style.display="none";
+  }
+  document.querySelectorAll(pg)[0].style.display="unset";
+}
+
+
+var sources = document.getElementsByClassName("colorbox");
+for (var i = 0; i < sources.length; i++){
+  var source = sources[i]
+    picker = new CP(source);
+// prevent showing native color picker panel
+source.onclick = function(e) {
+    e.preventDefault();
+};
+picker.on("change", function(color) {
+  this.source.style.backgroundColor = '#' + color;
+});
+}
+
+function sendSolid(){
+  var color = document.getElementsByClassName("solidbtn")[0].style.backgroundColor;
+  color = color.replace("rgb(","");
+  color = color.replace(")","");
+  color = color.split(",");
+  eel.solid(color[0],color[1],color[2]);
+}

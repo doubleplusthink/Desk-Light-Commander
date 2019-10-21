@@ -3,39 +3,55 @@
 <html lang="en">
 <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	
+
 	<meta charset="utf-8">
 
 	<title>Desk Light Commander</title>
-	<!<script type="text/javascript" src="/eel.js"></script>
+	<script type="text/javascript" src="eel.js"></script>
 	<meta name="description" content="Desk Light Commander">
 	<meta name="author" content="DoublePlusThink">
-	
+
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link href="color-picker-master/color-picker.min.css" rel="stylesheet">
 
 </head>
 
 <body>
-<H1 style="text-align:center">Desk Light Commander </H1>
+<H1>Desk Light Commander </H1>
 <br>
 <div class="selection">
-  <label class="radio">
-    <input type="radio" name="rsvp">
-    Pulse
-  </label>
-  <label class="radio">
-    <input type="radio" name="rsvp">
-    Lightning
-  </label>
-  <label class="radio" disabled>
-    <input type="radio" name="rsvp" >
-    Neon
-  </label>
-    <label class="radio" disabled>
-    <input type="radio" name="rsvp" >
-    Solid
-  </label>
+	<input class="btn btn-primary mode-select" id="Solid" type="button" onclick="toggleActive(this.id, '.solidpg')" value="Solid">
+	<input class="btn btn-primary mode-select" id="Pulse" type="button" onclick="toggleActive(this.id, '.pulsepg')" value="Pulse">
+	<input class="btn btn-primary mode-select" id="Fade" type="button" onclick="toggleActive(this.id, '.fadepg')" value="Fade">
+	<input class="btn btn-primary mode-select" id="Lightning" type="button" onclick="toggleActive(this.id, '.lightningpg')" value="Lightning">
+	<input class="btn btn-primary mode-select" id="Neon" type="button" onclick="toggleActive(this.id, '.neonpg')" value="Neon">
 </div>
+
+<br>
+
+<div class=solidpg>
+	<p>Choose a solid color for your desk lights</p>
+	<input class="btn btn-secondary colorbox solidbtn" type="button" value="solid btn">
+	<input class="btn btn-success" type="button" onclick="sendSolid()" value="Submit">
+</div>
+<div class=pulsepg>
+	<p>Pick your list of colors and a pulse rate</p>
+	<input class="btn btn-secondary colorbox" type="button" value="pulse btn">
+</div>
+<div class=fadepg>
+	<p>Fade between your list of colors</p>
+	<input class="btn btn-secondary colorbox" type="button" value="fade btn">
+</div>
+<div class=lightningpg>
+	<p>A lightning effect for a single color</p>
+	<input class="btn btn-secondary colorbox" type="button" value="lightning btn">
+</div>
+<div class=neonpg>
+	<p>A flickering, single color effect</p>
+	<input class="btn btn-secondary colorbox" type="button" value="neon btn">
+</div>
+<script src="color-picker-master/color-picker.min.js"></script>
+
 
   <script src="js/scripts.js"></script>
 </body>
