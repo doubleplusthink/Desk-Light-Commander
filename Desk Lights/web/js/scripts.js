@@ -30,10 +30,15 @@ picker.on("change", function(color) {
 });
 }
 
-function sendSolid(){
-  var color = document.getElementsByClassName("solidbtn")[0].style.backgroundColor;
+function rgbStrToHex(color){
   color = color.replace("rgb(","");
   color = color.replace(")","");
   color = color.split(",");
-  eel.solid(color[0],color[1],color[2]);
+  color = CP.RGB2HEX(color);
+  return color;
+}
+
+function sendSolid(){
+  var color = document.getElementsByClassName("solidbtn")[0].style.backgroundColor;
+  eel.solid(rgbStrToHex(color));
 }
