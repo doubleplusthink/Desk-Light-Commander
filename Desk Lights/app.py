@@ -7,12 +7,24 @@ except:
     pipmain(['install','pyfirmata'])
     from pyfirmata import Arduino, util
 
-board=Arduino('COM4')
+    #Automatically get the port that the Arduino is on and setup the board
+import serial.tools.list_ports
+ports = list(serial.tools.list_ports.comports())
+port = ""
+for p in ports:
+    p = str(p)
+    if "Arduino" in p:
+        port = p.split(' ', 1)[0]
+        break
+print(port)
+board=Arduino(port)
 
+    #Set up pins
 red = board.get_pin('d:3:p')
 green = board.get_pin('d:5:p')
 blue = board.get_pin('d:6:p')
 
+    #Start the web interface
 eel.init('web')
 
 def hexToRgb(hex):
@@ -35,5 +47,5 @@ writeRgb(1,1,1)
 def solid(r,g,b):
     writeRgb(int(r)/255,int(g)/255,int(b)/255)
 
-eel.start('main.html')
 
+eel.start('main.html')
