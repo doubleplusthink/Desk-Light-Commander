@@ -41,11 +41,11 @@ def writeHex(hex):
     myhex = hexToRgb(hex)
     writeRgb(myhex[0]/255,myhex[1]/255,myhex[2]/255)
 
-writeRgb(1,1,1)
+writeRgb(0,0,0)
 
 @eel.expose
-def solid(r,g,b):
-    writeRgb(int(r)/255,int(g)/255,int(b)/255)
+def solid(color):
+    writeHex(color)
 
 
 eel.start('main.html')
