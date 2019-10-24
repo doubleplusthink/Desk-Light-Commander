@@ -7,3 +7,18 @@ body{
 .solidpg, .pulsepg, .fadepg, .lightningpg, .neonpg{
 	display:none;
 }
+
+.hexList{
+	max-width: 350px;
+	margin: auto;
+}
+
+@media only screen and (max-width: 768px) {
+
+}
+
+@media only screen and (max-width: 480px) {
+	.hexList{
+		max-width:90%;
+	}
+}
