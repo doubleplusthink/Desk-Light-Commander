@@ -24,6 +24,9 @@ red = board.get_pin('d:3:p')
 green = board.get_pin('d:5:p')
 blue = board.get_pin('d:6:p')
 
+    #Set up lock variable
+eelLock = False
+
     #Start the web interface
 eel.init('web')
 
@@ -45,11 +48,14 @@ writeRgb(0,0,0)
 
 @eel.expose
 def solid(color):
+    eelLock = False
     writeHex(color)
 
 @eel.expose
 def pulse(colors):
-    while True:
+    eelLock = False
+    eelLock = True
+    while eelLock = True:
         for c in colors:
             writeHex(c)
             eel.sleep(0.7)
