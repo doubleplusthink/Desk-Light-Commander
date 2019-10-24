@@ -42,3 +42,18 @@ function sendSolid(){
   var color = document.getElementsByClassName("solidbtn")[0].style.backgroundColor;
   eel.solid(rgbStrToHex(color));
 }
+
+function listAppend(listId, btnClass){
+  value = document.getElementById(listId).value;
+  if (value.length > 0){
+    value += '\n'
+  }
+  document.getElementById(listId).value = value + rgbStrToHex(document.getElementsByClassName(btnClass)[0].style.backgroundColor);
+}
+
+function sendPulses(listId){
+  listStr = document.getElementById(listId).value;
+  listStr = listStr.replace(/[\t]/g, '');
+  list = listStr.split(/[\ \n\,]+/g);
+  eel.pulse(list);
+}
