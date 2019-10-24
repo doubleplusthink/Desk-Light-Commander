@@ -46,7 +46,7 @@ function sendSolid(){
 function listAppend(listId, btnClass){
   value = document.getElementById(listId).value;
   if (value.length > 0){
-    value += '\n'
+    value += ', '
   }
   document.getElementById(listId).value = value + rgbStrToHex(document.getElementsByClassName(btnClass)[0].style.backgroundColor);
 }
