@@ -49,6 +49,9 @@ def solid(color):
 
 @eel.expose
 def pulse(colors):
-    print(colors)
+    while True:
+        for c in colors:
+            writeHex(c)
+            eel.sleep(0.7)
 
 eel.start('main.html')
