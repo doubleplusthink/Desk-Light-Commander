@@ -47,5 +47,8 @@ writeRgb(0,0,0)
 def solid(color):
     writeHex(color)
 
+@eel.expose
+def pulse(colors):
+    print(colors)
 
 eel.start('main.html')
