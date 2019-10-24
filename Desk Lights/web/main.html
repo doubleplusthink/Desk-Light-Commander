@@ -2,6 +2,7 @@
 
 <html lang="en">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<meta charset="utf-8">
@@ -31,12 +32,18 @@
 
 <div class=solidpg>
 	<p>Choose a solid color for your desk lights</p>
-	<input class="btn btn-secondary colorbox solidbtn" type="button" value="solid btn">
+	<input class="btn btn-secondary colorbox solidbtn" type="button" value="Solid Color">
 	<input class="btn btn-success" type="button" onclick="sendSolid()" value="Submit">
 </div>
 <div class=pulsepg>
 	<p>Pick your list of colors and a pulse rate</p>
-	<input class="btn btn-secondary colorbox" type="button" value="pulse btn">
+	<input class="btn btn-secondary colorbox pulsebtn" type="button" value="Pulse">
+	<input class="btn btn-success" type="button" onclick="listAppend('pulseItems', 'pulsebtn')" value="Add Color">
+	<br>
+	<label for="pulseItems">Pulse Colors in Hex</label>
+	<textarea class="form-control hexList" id="pulseItems" rows="3"></textarea>
+	<br>
+	<input class="btn btn-success" type="button" onclick="sendPulses('pulseItems')" value="Submit">
 </div>
 <div class=fadepg>
 	<p>Fade between your list of colors</p>
