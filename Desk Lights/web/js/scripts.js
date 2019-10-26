@@ -57,3 +57,10 @@ function sendPulses(listId){
   list = listStr.split(/[\ \n\,]+/g);
   eel.pulse(list);
 }
+
+function sendFades(listId){
+  listStr = document.getElementById(listId).value;
+  listStr = listStr.replace(/[\t]/g, '');
+  list = listStr.split(/[\ \n\,]+/g);
+  eel.fade(list);
+}
