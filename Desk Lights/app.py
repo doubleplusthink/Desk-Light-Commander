@@ -24,8 +24,8 @@ red = board.get_pin('d:3:p')
 green = board.get_pin('d:5:p')
 blue = board.get_pin('d:6:p')
 
-    #Set up lock variable
-eelLock = False
+theloop = ''
+loopIncrementor = 0
 
     #Start the web interface
 eel.init('web')
@@ -48,16 +48,45 @@ writeRgb(0,0,0)
 
 @eel.expose
 def solid(color):
-    eelLock = False
+    global loopIncrementor
+    loopIncrementor += 1
     writeHex(color)
 
 @eel.expose
 def pulse(colors):
-    eelLock = False
-    eelLock = True
-    while eelLock = True:
-        for c in colors:
-            writeHex(c)
-            eel.sleep(0.7)
+    global loopIncrementor
+    loopIncrementor += 1
+    theloop = lightLoop(loopIncrementor)
+    theloop.pulse(colors)
+
+@eel.expose
+def fade(colors):
+    global loopIncrementor
+    loopIncrementor += 1
+    theloop = lightLoop(loopIncrementor)
+    theloop.fade(colors)
+
+class lightLoop:
+    def __init__(self, name):
+        self.name = name
+        self.running = True
+
+    def pulse(self, colors):
+        while self.running:
+            for c in colors:
+                if self.name < loopIncrementor:
+                    self.running = False
+                if self.running:
+                    writeHex(c)
+                    eel.sleep(0.7)
+
+    def fade(self, colors):
+        while self.running:
+            for c in colors:
+                if self.name < loopIncrementor:
+                    self.running = False
+                if self.running:
+                    writeHex(c)
+                    eel.sleep(0.7)
 
 eel.start('main.html')
