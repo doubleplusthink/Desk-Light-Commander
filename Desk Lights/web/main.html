@@ -35,6 +35,8 @@
 	<input class="btn btn-secondary colorbox solidbtn" type="button" value="Solid Color">
 	<input class="btn btn-success" type="button" onclick="sendSolid()" value="Submit">
 </div>
+
+
 <div class=pulsepg>
 	<p>Pick your list of colors and a pulse rate</p>
 	<input class="btn btn-secondary colorbox pulsebtn" type="button" value="Pulse">
@@ -45,10 +47,20 @@
 	<br>
 	<input class="btn btn-success" type="button" onclick="sendPulses('pulseItems')" value="Submit">
 </div>
+
+
 <div class=fadepg>
 	<p>Fade between your list of colors</p>
-	<input class="btn btn-secondary colorbox" type="button" value="fade btn">
+	<input class="btn btn-secondary colorbox fadebtn" type="button" value="Fade">
+	<input class="btn btn-success" type="button" onclick="listAppend('fadeItems', 'fadebtn')" value="Add Color">
+	<br>
+	<label for="fadeItems">Pulse Colors in Hex</label>
+	<textarea class="form-control hexList" id="fadeItems" rows="3"></textarea>
+	<br>
+	<input class="btn btn-success" type="button" onclick="sendFades('fadeItems')" value="Submit">
 </div>
+
+
 <div class=lightningpg>
 	<p>A lightning effect for a single color</p>
 	<input class="btn btn-secondary colorbox" type="button" value="lightning btn">
