@@ -1,0 +1,10 @@
+README for Linux Users
+
+Desk Light Commander will work on linux with the proper permissions.  
+
+First, ensure your user has access to the arduino port by running this command: 
+sudo usermod -a -G dialout your_username
+
+auto installs of the needed python packages do not yet work yet.  So use pip3 to install the following packages: 
+pip3 install pyfirmata
+pip3 install eel
