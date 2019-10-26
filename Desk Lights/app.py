@@ -7,16 +7,33 @@ except:
     pipmain(['install','pyfirmata'])
     from pyfirmata import Arduino, util
 
+    #Get Operating System Type
+import platform
+currentOs = platform.system()
+if "linux" in currentOs.lower():
+    currentOs = "linux"
+if "windows" in currentOs.lower():
+    currentOs = "windows"
+
+
     #Automatically get the port that the Arduino is on and setup the board
-import serial.tools.list_ports
-ports = list(serial.tools.list_ports.comports())
 port = ""
-for p in ports:
-    p = str(p)
-    if "Arduino" in p:
-        port = p.split(' ', 1)[0]
-        break
-print(port)
+if currentOs == "linux":
+    import os
+    feedback = "/dev/" + os.popen("ls /dev/ | grep ttyACM").read().strip()
+    if len(feedback) > 11:
+        port = feedback
+
+elif currentOs == "windows": 
+    import serial.tools.list_ports
+    ports = list(serial.tools.list_ports.comports())
+    for p in ports:
+        p = str(p)
+        if "Arduino" in p:
+            port = p.split(' ', 1)[0]
+            break
+    print(port)
+
 board=Arduino(port)
 
     #Set up pins
