@@ -64,3 +64,13 @@ function sendFades(listId){
   list = listStr.split(/[\ \n\,]+/g);
   eel.fade(list);
 }
+
+function sendLightning(){
+  var color = document.getElementsByClassName("lightningbtn")[0].style.backgroundColor;
+  eel.lightning(rgbStrToHex(color));
+}
+
+function sendNeon(){
+  var color = document.getElementsByClassName("neonbtn")[0].style.backgroundColor;
+  eel.neon(rgbStrToHex(color));
+}
