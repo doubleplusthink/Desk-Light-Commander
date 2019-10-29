@@ -72,10 +72,15 @@ if commonAnode:
 else:
     writeRgb(1,1,1)
 
-def getSteps(hex):
-    rgb = list(hexToRgb(hex))
+def getSteps(hex,steps):
+    if type(hex) is list:
+        rgb = hex
+    elif type(hex) is tuple:
+        rgb = list(hex)
+    else:
+        rgb = list(hexToRgb(hex))
     for i in range(3):
-        rgb.append(rgb[0]/255/255)
+        rgb.append(rgb[0]/255/steps)
         rgb.pop(0)
     return(rgb)
 
@@ -123,7 +128,7 @@ class lightLoop:
             for c in colors:
                 toWrite = [0,0,0]
                 increasing = True
-                steps = getSteps(c)
+                steps = getSteps(c,255)
                 pulseIncrementor = 0
 
                 while (increasing == True):
@@ -158,18 +163,40 @@ class lightLoop:
                         increasing = True
 
 
-
-
-
-
     def fade(self, colors):
+        currentColor = [0,0,0]
         while self.running:
             for c in colors:
-                if self.name < loopIncrementor:
-                    self.running = False
-                if self.running:
-                    writeHex(c)
-                    eel.sleep(0.7)
+                toWrite = list(currentColor)
+                goto = list(hexToRgb(c))
+                for i in range(3):
+                    goto[i] = goto[i] - toWrite[i]
+                steps = goto
+                for i in range(3):
+                    steps[i] /= 255 #put steps in decimal form
+                    toWrite[i] /= 255 #put toWrite in decimal form
+                    steps[i] /= 255 #break steps into 255 steps
+                pulseIncrementor = 0
+                increasing = True
+
+                while (increasing == True):
+                    for i in range(3):
+                        toWrite[i] += steps[i]
+                        if toWrite[i] > 1:
+                            toWrite[i] = 1
+                        elif toWrite[i] < 0:
+                            toWrite[i] = 0
+                    pulseIncrementor += 1
+                    if self.name < loopIncrementor:
+                        self.running = False
+                    if self.running == True:
+                        writeRgb(toWrite[0],toWrite[1],toWrite[2])
+                        eel.sleep(0.02)
+                    else:pass
+                    if pulseIncrementor >= 255:
+                        eel.sleep(1.0)
+                        increasing = False
+                        currentColor = list(hexToRgb(c))
 
     def lightning(self, color):
         while self.running:
