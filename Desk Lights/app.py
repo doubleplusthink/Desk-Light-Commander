@@ -84,6 +84,12 @@ def getSteps(hex,steps):
         rgb.pop(0)
     return(rgb)
 
+def writeColorPct(color, pct):
+    rgb = list(hexToRgb(color))
+    for i in range(3):
+        rgb[i] = rgb[i] * pct / 100
+    writeRgb(rgb[0],rgb[1],rgb[2])
+
 @eel.expose
 def solid(color):
     global loopIncrementor
